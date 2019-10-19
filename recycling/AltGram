@@ -1,0 +1,17 @@
+
+	# Hyperbolic only
+AltGram := function(dimV)
+	#	Computes a gram matrix for the alternate quadratic form
+	local
+		zero,	# Zero vector
+		id,		# Identity matrix
+		gram;	# Gram matrix
+
+	zero := List([1..dimV-1], i -> 0);
+	id := IdentityMat(dimV-1);
+	gram := Concatenation([zero], id);
+	zero := List([1..dimV], i -> 0);
+	gram := Z(2)*Concatenation(TransposedMat(gram), [zero]);
+
+	return gram;
+end; 

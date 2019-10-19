@@ -1,0 +1,61 @@
+ColorPrompt(true);
+#Read("/home/mark/Dropbox/Research/code/JordanSteiner/read.g");		# Unix
+Read("C:\Users\Mark\Dropbox\research\code\JordanSteiner\read_windows.g");	# Windows
+
+### Choose dimension, field and the type of your NDquadric
+# Degenerate quadrics sold separately
+
+n:=4;
+q:=2;
+epsilon:=-1;
+ag:=AG(n,q);
+points:=AsSet(Points(ag));
+
+
+## Get the coordinates of an affine point
+UnderlyingVector := function(pt)
+return Unpack(pt!.obj);
+end;
+
+
+
+form := Phi0(n,epsilon);
+sing := Filtered(GF(2)^n, x -> x^form = 0*Z(2));;
+
+
+# Generate gam
+gam:=Filtered(points, pt -> UnderlyingVector(pt)^form = 0*Z(2));;
+ngam:=Filtered(points, pt -> not pt in gam);
+for pt in gam do Display(pt);od;
+zero:=points[1];
+
+x:=CollineationGroup(ag);
+xgam:=FiningSetwiseStabiliser(x,gam);
+x0:=FiningStabiliser(x,zero);
+x0gam:=Intersection(x0,xgam);
+
+norms:=Filtered(NormalSubgroups(x),t->Size(t)=2^n);
+t:=norms[1];
+m:=Intersection(t,xgam);
+
+OrbitLengths(xgam,points);
+IsTransitive(x0gam,ngam);
+
+
+
+
+
+
+
+
+### Do not include below
+
+ao:=Group(Concatenation(GeneratorsOfGroup(t),GeneratorsOfGroup(x0gam)));
+
+#To unpack an affine collineation use
+#Unpack(MatrixOfCollineation(col));
+
+matbil:=matform+TransposedMat(matform);
+bil:=BilinearFormByMatrix(matbil);
+w:=PolarSpace(bil);
+sp:=CollineationGroup(w);
