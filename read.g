@@ -5,6 +5,7 @@
 
 # SIT tools
 ReadPackage("JohnsonCodes", "lib/NeighbourGraph.gi");
+ReadPackage("JohnsonCodes", "lib/FDPM.gi");
 ReadPackage("JohnsonCodes", "lib/Summarise.gi");
 
 # Quadratic and bilinear forms
