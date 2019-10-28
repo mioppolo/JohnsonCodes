@@ -1,6 +1,4 @@
-
-	# Hyperbolic only
-AltGram := function(dimV)
+HyperbolicAltGram := function(dimV)
 	#	Computes a gram matrix for the alternate quadratic form
 	local
 		zero,	# Zero vector

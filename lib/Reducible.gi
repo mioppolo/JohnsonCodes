@@ -37,9 +37,10 @@ ParabolicSubgroup := function(dimV, dimU)
 		subspace,		# Totally isotropic subspace
 		parabolic;		# Parabolic subgroup
 
-	gram := Phi0Gram(dimV, 1);
+	gram := JCStandardGram(dimV, 1);
 	w := SymplecticSpace(dimV-1, 2);
 	g := IsometryGroup(w);
+	# We can pull out a basis for U from the "standard" gram matrix
 	basis := List([1..dimU], i -> gram[2*i]);
 	subspace := VectorSpaceToElement(w, basis);
 	parabolic := FiningStabiliser(g, subspace);
