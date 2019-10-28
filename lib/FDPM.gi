@@ -1,5 +1,5 @@
 #############################################################################
-#          John's Permutation Module                                        #
+#          John's Permutation Module Gens                               #
 #############################################################################
 
 FullyDeletedPermutationRep := function( n, gf )
@@ -33,4 +33,49 @@ FullyDeletedPermutationRep := function( n, gf )
   fi;
   ConvertToMatrixRep(m1, gf); ConvertToMatrixRep(m2, gf);
   return [m1, m2];
+end;
+
+# Gram matrix for a hyperbolic quadratic form preserved by the fully deleted permutation module for Sn
+FDPMHyperbolicGram := function(dimV)
+	#	Computes a gram matrix for the alternate quadratic form
+	local
+		zero,	# Zero vector
+		id,		# Identity matrix
+		gram;	# Gram matrix
+
+	zero := List([1..dimV-1], i -> 0);
+	id := IdentityMat(dimV-1);
+	gram := Concatenation([zero], id);
+	zero := List([1..dimV], i -> 0);
+	gram := Z(2)*Concatenation(TransposedMat(gram), [zero]);
+
+	return gram;
+end;
+
+FDPMHyperbolicForm := function(dimV)
+    return QuadraticFormByMatrix(FDPMHyperbolicGram(dimV));
+end;
+
+FDPMEllipticGram := function(dimV)
+    # Start from a hyperboic gram matrix and add elements on the diagonal
+    # FDPMHyperbolicForm(e1+e2)=1, so the form below is elliptic
+    local hypgram, diag, coord;
+    hypgram := FDPMHyperbolicGram(dimV);
+    diag := List([1..dimV], coord -> Z(2)*0);
+    diag[1] := Z(2);
+    diag[2] := Z(2);
+    return hypgram+DiagonalMat(diag);
+end;
+
+FDPMEllipticForm := function(dimV)
+    return QuadraticFormByMatrix(FDPMEllipticGram(dimV));
+end; 
+
+FDPMForms := function(dimV)
+	#	Computes a gram matrix for the alternate quadratic form
+	local hypgram, v, vec, forms;
+    v := GF(2)^dimV;
+	hypgram := FDPMHyperbolicGram(dimV);
+	forms := List(v, vec -> QuadraticFormByMatrix(DiagonalMat(vec)+hypgram));
+	return AsSet(forms);
 end;

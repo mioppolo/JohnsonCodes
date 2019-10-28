@@ -1,9 +1,12 @@
-############################################################################
-#          John's Permutation Module                     #
-############################################################################
+ComputeFDPMOrbits := function(dim, eps)
+    local sym;
+    
+    mats := FullyDeletedPermutationRep( 10, GF(2) );
+    sypdetector:=PreservedSesquilinearForms(Group(mats));
+    syp:=sypdetector[1];
 
 
-## You're dicking around with bases here
+## You're messing around with bases here
 mats := FullyDeletedPermutationRep( 10, GF(2) );
 sypdetector:=PreservedSesquilinearForms(Group(mats));
 syp:=sypdetector[1];
