@@ -1,3 +1,4 @@
+# Max's sporadic records
 Read("neighbourgraph.g");
 ntcodes := [
   rec( name := "PSL(2,11) on 11 points, k=5",
