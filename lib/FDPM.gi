@@ -1,10 +1,9 @@
 #############################################################################
-#          John's Permutation Module Gens                               #
+#          John's Permutation Module Gens - modified by Mark                #
 #############################################################################
 
-FullyDeletedPermutationRep := function( n, gf )
+FullyDeletedPermutationGens := function(n, gf)
   ## Generators for the fully deleted permutation module of Sym(n) in GL(d,q)
-
   local p, d, id, one, zero, vec, vec2, m1, m2;
   p := Characteristic(gf);
   one := One(gf);
@@ -31,8 +30,27 @@ FullyDeletedPermutationRep := function( n, gf )
     m2 := Concatenation([vec2], m1);  ## transposition
     m1 := Concatenation(m1, [vec2]); ## n-cycle
   fi;
-  ConvertToMatrixRep(m1, gf); ConvertToMatrixRep(m2, gf);
+  ConvertToMatrixRep(m1, gf);
+  ConvertToMatrixRep(m2, gf);
   return [m1, m2];
+end;
+
+FullyDeletedPermutationGens2 := function(n, gf)
+    ## Change of basis, please
+    local mats, sypdetector, syp, bc;
+    mats := FullyDeletedPermutationGens(n, gf);
+    sypdetector:=PreservedSesquilinearForms(Group(mats));
+    syp:=sypdetector[1];
+    bc:=BaseChangeToCanonical(syp);
+    mats:= List(mats,t->bc*t*Inverse(bc));
+    return mats;
+end;
+
+FullyDeletedPermutationModule := function(n, gf)
+    local gens, matrix;
+    gens := FullyDeletedPermutationGens2(n, gf);
+    gens := List(gens, matrix -> CollineationOfProjectiveSpace( matrix, gf ));
+    return Group(gens);
 end;
 
 # Gram matrix for a hyperbolic quadratic form preserved by the fully deleted permutation module for Sn
