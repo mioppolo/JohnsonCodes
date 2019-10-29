@@ -5,7 +5,5 @@ Display(syp);
 w := PolarSpace(syp);
 g := IsometryGroup(w);
 bigQ := Orbit(g,form,OnQuadraticForms);
-
-
-s := SylowSubgroup(g,2);
+s := FullyDeletedPermutationModule(8,GF(2));
 OrbitLengths(s,bigQ,OnQuadraticForms);
