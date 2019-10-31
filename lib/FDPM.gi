@@ -52,3 +52,13 @@ FullyDeletedPermutationModule := function(n, gf)
     gens := List(gens, matrix -> CollineationOfProjectiveSpace( matrix, gf ));
     return Group(gens);
 end;
+
+# Permutation representations for the FDPM + Jordan-Steiner
+FDPMJordanSteinerPermRep := function(dimV,epsilon)
+    local form, Qeps, sym, permRep;
+    form := JCStandardForm(dimV, epsilon);
+    Qeps := JCQuadForms(form);
+    sym := FullyDeletedPermutationModule(dimV+2,GF(2));
+    permRep := Action(sym, Qeps, OnQuadraticForms);
+    return permRep;
+end;
