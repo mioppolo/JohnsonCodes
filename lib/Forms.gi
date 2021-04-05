@@ -2,7 +2,7 @@
 #	Quadratic form definitions
 ###############################################################################
 
-# Returns the gram matrix of the "standard hyperbolic quadratic form"
+# Returns the gram matrix of the standard nondegenerate epsilon-quadratic form
 JCStandardGram := function(dimV, epsilon)
 	#	Computes a gram matrix for the standard quadratic form
 	local
@@ -29,7 +29,7 @@ JCStandardGram := function(dimV, epsilon)
 	fi;
 end;
 
-# Returns the standard hyperbolic quadratic form
+# Returns the standard nondegenerate epsilon-quadratic form
 JCStandardForm := function(dimV, epsilon)
 	#	Computes the standard quadratic form
 	return QuadraticFormByMatrix(JCStandardGram(dimV, epsilon));
@@ -56,12 +56,12 @@ JCNonsingualrVectors := function(phi)
 end;
 
 JCQuadForms := function(form)
-	#	Returns the set of all epsilon-quadratic forms on V which	
+	#	Returns the set of all epsilon-quadratic forms on V which
 	#	polarise to a fixed symplectic form
-	
+
 	#   Local variables are dtermined by the input form
 	local
-		dimV,		# Dimension of V 
+		dimV,		# Dimension of V
 		V,			# The vector space V(2n,2)
 		gram,		# Gram matrix for the given form
 		sing,		# Singular vectors of the given form

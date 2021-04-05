@@ -1,3 +1,34 @@
+# Returns set of nondegenerate subspaces in PG(dimV-1,2)
+# B is the standard symplectic form
+NDSubspaces := function(dimV,dimU)
+  local
+    pg,				# PG(2n-1,2)
+    w,				# W(2n-1,2)
+    g,				# Sp(2n,2)
+    id,				# Identity matrix
+    i,				# Index used to construct basis
+    basis,			# Basis for U
+    subspace,		# Non-degenerate subspace seed
+    spaces;     # Set of nondegenerate subspaces
+
+  # Make sure dimU is even
+  if not dimV/2 in Integers then;
+
+  	return fail;
+
+  else;
+  	pg := PG(dimV-1, 2);
+  	w := SymplecticSpace(dimV-1, 2);
+  	g := IsometryGroup(w);
+  	id := IdentityMat(dimV);
+  	basis := List([1..dimU], i -> id[i]);
+  	subspace := VectorSpaceToElement(pg, basis);
+    spaces := FiningOrbit(g,subspace);
+  fi;
+  return spaces;
+end;
+
+
 NDSubgroup := function(dimV, dimU)
 	local
 		pg,				# PG(2n-1,2)

@@ -9,22 +9,22 @@
 SetPackageInfo( rec(
 
 PackageName := "JohnsonCodes",
-Subtitle := "Description",
+Subtitle := "SIT-Codes in Johnson Graphs",
 Version := "0.1",
-Date := "05/06/2019", # dd/mm/yyyy format
+Date := "05/04/2029", # dd/mm/yyyy format
 License := "GPL-2.0-or-later",
 
 Persons := [
   rec(
     IsAuthor := true,
     IsMaintainer := true,
-    FirstNames := "Name",
-    LastName := "Surname",
-    WWWHome := "wwwhome",
-    Email := "email",
-    PostalAddress := "address",
-    Place := "place",
-    Institution := "institution",
+    FirstNames := "Mark",
+    LastName := "Ioppolo",
+    WWWHome := "https://github.com/mioppolo/JohnsonCodes",
+    Email := "mioppolo.math@gmail.com",
+    PostalAddress := "",
+    Place := "",
+    Institution := "",
   ),
 ],
 
@@ -79,5 +79,3 @@ TestFile := "tst/testall.g",
 #Keywords := [ "TODO" ],
 
 ));
-
-

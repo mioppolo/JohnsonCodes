@@ -1,0 +1,22 @@
+Quick
+Case summary: n = 2      eps = 1         v = 10
+k       minDis  numCodewords
+4       2       15
+4       2       15
+
+
+
+Quick
+Case summary: n = 3      eps = 1         v = 36
+k       minDis  numCodewords
+16      8       63
+8       4       135
+12      4       315
+6       3       336
+
+Quick
+Case summary: n = 3      eps = -1        v = 28
+k       minDis  numCodewords
+12      6       63
+4       2       315
+10      4       336
