@@ -12,7 +12,7 @@ NDCode := function(dimV, dimU, epsilon)
         form,       # nondegenerate quadratic form with gram matrix gram
         B,          # symplectic form induced by form
         g,          # isometry group of g
-        stab,       # stabiliser of a totally isotropic space
+        stab,       # stabiliser of a nondegenerate space
         Q,          # quadratic forms which polarise to B
         orbs,       # orbits of stab on Q
         hom_g,      # permutation rep for g
