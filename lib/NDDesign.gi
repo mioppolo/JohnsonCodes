@@ -14,6 +14,7 @@ NDDesign := function(dimV, dimU, epsilon)
         omega,      # underlying set for permutation reps
         orb,        # orbit
         codeword,   # codeword
+        elm,        # Dummy variable for taking complements
         code,     # codewords
         des       # Design
         ;
@@ -25,8 +26,8 @@ NDDesign := function(dimV, dimU, epsilon)
 
     # definitions of groups
     B := BilinearFormByMatrix(gram + TransposedMat(gram), GF(2));
-    g := IsometryGroup(PolarSpace(B));
-    stab := NDSubgroup(dimV,dimU);
+    g := IsometryGroup(PolarSpace(B));;
+    stab := NDSubgroup(dimV,dimU);;
 
     # action homomorphisms
     hom_g := Image(ActionHomomorphism(g,Q,OnQuadraticForms));
@@ -34,8 +35,12 @@ NDDesign := function(dimV, dimU, epsilon)
     omega := MovedPoints(hom_g);
 
     # Naively construct a codeword using a unknown seed, return design
-    codeword := Orbit(hom_stab,1);
+    codeword := AsSet(Orbit(hom_stab,1));
+    # Make sure we're working with the smaller codewords
+    if Size(codeword) > Size(omega)/2 then
+      codeword := Filtered(omega, elm -> not elm in codeword);
+    fi;
     code := Orbit(hom_g,codeword,OnSets);
-    des := DesignFromPointsAndBlocks(omega, code);
+    des := DesignFromPointsAndBlocks(AsSet(omega), code);
     return des;
 end;
