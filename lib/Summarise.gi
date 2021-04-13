@@ -1,5 +1,24 @@
 # Some functions to provide code information and convert output to latex
 
+DesignSummary := function(design)
+  local
+    param,    # Design parameters
+    intNum,   # Intersection numbers (including k)
+    len,      # Number of intersection numbers
+    minDist;  # Minimum distance (Johnson)
+
+  # Format: ""
+  param := DesignParameter(design);
+  intNum := AsSet(BlockIntersectionNumbersK(design,1));
+  len := Size(intNum);
+  minDist := intNum[len] - intNum[len-1];
+  param := Concatenation(param, [minDist]);
+  Print("Design parameters;\n t,v,b,r,k,l,mindis\n");
+  Print(param,"\n");
+  Print("Intersection numbers\n");
+  Print(intNum,"\n");
+end;
+
 summary := function(code_record)
     Print(
         "\n",
