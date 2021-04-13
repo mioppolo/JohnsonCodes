@@ -17,4 +17,5 @@ ReadPackage("JohnsonCodes", "lib/Reducible.gi");
 ReadPackage("JohnsonCodes", "lib/NDCode.gi");
 ReadPackage("JohnsonCodes", "lib/NDDesign.gi");
 ReadPackage("JohnsonCodes", "lib/ParabolicCode.gi");
+ReadPackage("JohnsonCodes", "lib/ParabolicDesign.gi");
 ReadPackage("JohnsonCodes", "lib/Summarise.gi");
