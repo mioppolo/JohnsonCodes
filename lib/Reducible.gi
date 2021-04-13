@@ -3,18 +3,20 @@
 # U = <e1,f1,..,ed,fd>
 NDSubspace := function(n, d)
   local
-    dimV := 2*n,
-    dimU := 2*d,
+    dimV,
+    dimU,
     pg,       # PG(2n-1,2)
     id,       # Identity Matrix
     basis,    # Basis for subspace
     subspace; # Fining subspace; return value
 
+  dimV := 2*n;
+  dimU := 2*d;
   pg := PG(dimV-1, 2);
   id := IdentityMat(dimV);
   basis := List([1..dimU], i -> id[i]);
   subspace := VectorSpaceToElement(pg, basis);
-  return subspace;
+    return subspace;
 end;
 
 # Returns set of nondegenerate subspaces in PG(dimV-1,2)
